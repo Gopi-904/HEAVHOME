@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - HEAV' HOME INTERIOR</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+        :root {
+            --primary: #caa74a;
+            --dark: #1a1a1a;
+            --white: #ffffff;
+            --gray: #f8f9fa;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--white);
+        }
+
+        .services-page {
+            padding: 100px 8%;
+            text-align: center;
+        }
+
+        .services-header {
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .services-header h1 {
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .services-header p {
+            color: #777;
+            font-size: 16px;
+        }
+
+        .service-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border: 1px solid #eee;
+            border-bottom: 4px solid transparent;
+            padding: 40px 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .service-card:hover, .service-card.active {
+            transform: translateY(-12px);
+            border-bottom: 4px solid var(--primary);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: var(--gray);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .service-card:hover .icon-box {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Click Effect: Briefly highlight the card */
+        .service-card:active {
+            transform: scale(0.98);
+            background-color: #fffaf0;
+        }
+
+        @media (max-width: 768px) {
+            .services-page { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- SERVICES SECTION -->
+<section class="services-page">
+    <div class="services-header">
+        <h1>Our Professional Services</h1>
+        <p>Expert interior solutions crafted with precision and luxury in mind.</p>
+    </div>
+
+    <div class="service-container">
+
+        <div class="service-card">
+            <div class="icon-box"><i class="fas fa-kitchen-set"></i></div>
+            <h3>Modular Kitchen</h3>
+            <p>Bespoke ergonomic designs with premium hardware and space-saving smart cabinets.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="icon-box"><i class="fas fa-couch"></i></div>
+            <h3>Furniture</h3>
+            <p>Custom-crafted furniture designed to match your personality and home’s architectural flow.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="icon-box"><i class="fas fa-tools"></i></div>
+            <h3>Civil Work</h3>
+            <p>Precision tiling, flooring, and structural modifications handled by expert technicians.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="icon-box"><i class="fas fa-lightbulb"></i></div>
+            <h3>False Ceiling</h3>
+            <p>Innovative lighting solutions and modern POP designs to transform your overhead space.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="icon-box"><i class="fas fa-paint-roller"></i></div>
+            <h3>Painting</h3>
+            <p>Lustrous finishes and textured wall treatments using premium, eco-friendly paints.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="icon-box"><i class="fas fa-plug"></i></div>
+            <h3>Electric Work</h3>
+            <p>Advanced smart-home wiring and elegant lighting fixtures for a safe, modern lifestyle.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- Simple Script for "Click" interaction -->
+<script>
+    const cards = document.querySelectorAll('.service-card');
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Remove active class from others
+            cards.forEach(c => c.classList.remove('active'));
+            // Add to the clicked one
+            card.classList.add('active');
+            // Optional: Alert or redirect
+            console.log("Selected service:", card.querySelector('h3').innerText);
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<section id="projects" class="services-section">
+    <div class="services-header">
+        <h2>Featured <span class="highlight">Projects</span></h2>
+        <p>A glimpse into how we transform vision into livable luxury.</p>
+    </div>
+
+    <h3 style="text-align: center; margin-bottom: 30px; color: var(--dark); text-transform: uppercase;">Project 01: Designer Living Space</h3>
+    <div class="service-container" style="margin-bottom: 60px;">
+        
+        <div class="service-card">
+            <div class="service-img">
+                <video autoplay muted loop playsinline width="100%">
+                    <source th:src="@{/videos/video1.mp4}" type="video/mp4">
+                </video>
+            </div>
+            <div class="service-content">
+                <h3>Living Room Tour</h3>
+                <p>Elegant moulding panels and bespoke lighting.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img">
+                <img th:src="@{/images/work1.jpg}" alt="Kitchen View 1">
+            </div>
+            <div class="service-content">
+                <h3>Azure Blue Kitchen</h3>
+                <p>High-gloss modular cabinetry finishes.</p>
+            </div>
+        </div>
+    </div>
+
+    <h3 style="text-align: center; margin-bottom: 30px; color: var(--dark); text-transform: uppercase;">Project 02: Peaceful Mandir Unit</h3>
+    <div class="service-container">
+        <div class="service-card">
+            <div class="service-img">
+                <video autoplay muted loop playsinline width="100%">
+                    <source th:src="@{/videos/video2.mp4}" type="video/mp4">
+                </video>
+            </div>
+            <div class="service-content">
+                <h3>Mandir & TV Unit</h3>
+                <p>A blend of modern utility and spiritual calm.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img">
+                <img th:src="@{/images/work4.jpg}" alt="Bedroom View">
+            </div>
+            <div class="service-content">
+                <h3>Architectural Master</h3>
+                <p>Custom wall molding and cove lighting.</p>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

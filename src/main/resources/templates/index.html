@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HEAV' HOME | Interior Design</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* ============================================================
+           1. GLOBAL SETTINGS & VARIABLES
+           ============================================================ */
+        :root {
+            --primary: #caa74a; 
+            --dark: #1a1a1a;    
+            --light-bg: #fcfcfc;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--white);
+        }
+
+        /* ============================================================
+           2. NAVIGATION & HERO
+           ============================================================ */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 8%; 
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            height: 80px; 
+        }
+
+        .logo-container {
+            background: var(--dark); 
+            padding: 20px 30px;
+            border-radius: 0 0 15px 15px; 
+            margin-top: -20px; 
+        }
+
+        .logo { font-size: 24px; font-weight: 700; letter-spacing: 2px; color: var(--white) !important; text-transform: uppercase; text-decoration: none; }
+        .logo span { color: var(--primary); font-weight: 300; }
+
+        nav a { text-decoration: none; color: #333; font-size: 13px; font-weight: 600; text-transform: uppercase; margin-left: 20px; transition: var(--transition); }
+        nav a i { color: var(--primary); margin-right: 8px; }
+        nav a:hover { color: var(--primary); }
+
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 300; margin-bottom: 10px; letter-spacing: 3px; }
+
+        /* ============================================================
+           3. ABOUT & SERVICES
+           ============================================================ */
+        .about-section { padding: 100px 8%; background: #fff; }
+        .about-container { display: flex; align-items: center; gap: 60px; max-width: 1200px; margin: auto; }
+        .about-image img { width: 100%; height: 500px; object-fit: cover; box-shadow: 20px 20px 0px #f4f1ec; }
+        .tagline { font-size: 38px; line-height: 1.2; color: var(--dark); margin-bottom: 25px; font-weight: 300; }
+        .highlight { color: var(--primary); font-weight: bold; }
+        .expertise-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; border-top: 1px solid #eee; padding-top: 25px; }
+        .expertise-list span { font-size: 14px; font-weight: 600; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+
+        .services-section { padding: 100px 8%; background-color: #fcfcfc; text-align: center; }
+        .services-header { margin-bottom: 60px; }
+        .services-header h2 { font-size: 32px; text-transform: uppercase; letter-spacing: 2px; color: var(--dark); }
+
+        .service-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; max-width: 1200px; margin: auto; }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-bottom: 4px solid var(--primary); }
+        .service-content { padding: 25px; flex: 1; display: flex; flex-direction: column; text-align: left; }
+        .icon-box { font-size: 35px; color: var(--primary); margin-bottom: 15px; text-align: center; }
+
+        /* ============================================================
+           4. PROJECTS (UNIFIED VIDEO & IMAGE ALIGNMENT)
+           ============================================================ */
+        .project-group-title { text-align: center; margin: 40px 0 30px; color: var(--dark); text-transform: uppercase; letter-spacing: 2px; font-size: 20px; position: relative; padding-bottom: 10px; }
+        .project-group-title::after { content: ''; position: absolute; width: 60px; height: 3px; background: var(--primary); bottom: 0; left: 50%; transform: translateX(-50%); }
+
+        /* VIDEO LENGTH FIX */
+        .service-img-full { width: 100%; height: 550px; background-color: #000; overflow: hidden; position: relative; }
+        .service-img-full video { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+
+        /* GALLERY IMAGE FIX */
+        .service-img { width: 100%; height: 250px; overflow: hidden; background-color: #000; }
+        .service-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+
+        .service-card:hover .service-img img, 
+        .service-card:hover .service-img-full video { transform: scale(1.1); }
+
+        /* ============================================================
+           5. FOUNDER & CONTACT
+           ============================================================ */
+        .founder-social a { transition: var(--transition); color: var(--dark); margin: 0 10px; font-size: 18px; text-decoration: none; }
+        .founder-social a:hover { color: var(--primary); transform: scale(1.2); display: inline-block; }
+
+        #contact .service-container { grid-template-columns: 1fr 1.2fr; align-items: start; gap: 40px; }
+        .contact-info-wrapper { display: flex; flex-direction: column; gap: 15px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #eee; border-radius: 4px; font-family: inherit; }
+        .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 5px rgba(202, 167, 74, 0.2); }
+
+        .btn { display: inline-block; background: var(--primary); color: white; padding: 14px 35px; text-decoration: none; font-weight: 600; border-radius: 4px; transition: var(--transition); border: none; cursor: pointer; }
+        .btn:hover { background: #b08d3a; }
+
+        footer { background: var(--dark); color: var(--white); text-align: center; padding: 40px; margin-top: 50px; }
+
+        @media (max-width: 900px) {
+            .about-container { flex-direction: column; text-align: center; }
+            #contact .service-container { grid-template-columns: 1fr; }
+            header { padding: 0 4%; }
+            nav a { margin-left: 10px; font-size: 11px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+        <div class="logo">HEAV'<span>HOME</span></div>
+    </div>
+    <nav>
+        <a href="#home"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="#about"><i class="fa-solid fa-circle-info"></i> About</a>
+        <a href="#services"><i class="fa-solid fa-gears"></i> Services</a>
+        <a href="#projects"><i class="fa-solid fa-briefcase"></i> Projects</a>
+        <a href="#founder"><i class="fa-solid fa-user-tie"></i> Founder</a>
+        <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <h1>Design Your Dream Space</h1>
+    <p>Modern Interior Solutions for Homes & Offices</p>
+    <a href="#contact" class="btn">Get Started</a>
+</section>
+
+<section class="about-section" id="about">
+    <div class="about-container">
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" alt="Heav Home Interior Design">
+        </div>
+        <div class="about-content">
+            <h2 class="tagline">“Designing Dreams, <br><span class="highlight">Building Reality”</span></h2>
+            <p>At <strong>HEAV’ HOME INTERIOR</strong>, we believe every space tells a story. Led by <strong>Farhan Shaikh</strong>, we provide end-to-end interior solutions tailored to your unique lifestyle.</p>
+            <div class="expertise-list">
+                <span><i class="fa-solid fa-check"></i> Modular Kitchen</span>
+                <span><i class="fa-solid fa-check"></i> Furniture Work</span>
+                <span><i class="fa-solid fa-check"></i> Civil Work</span>
+                <span><i class="fa-solid fa-check"></i> False Ceiling</span>
+                <span><i class="fa-solid fa-check"></i> Painting</span>
+                <span><i class="fa-solid fa-check"></i> Electrical Work</span>
+            </div>
+            <a href="#contact" class="btn" style="margin-top:30px;">Get a Free Quote</a>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="services-section">
+    <div class="services-header">
+        <h2>Our Professional <span class="highlight">Services</span></h2>
+        <p>From conceptual design to final execution, we handle it all.</p>
+    </div>
+
+    <div class="service-container">
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80" alt="Kitchen">
+            </div>
+            <div class="service-content">
+                <div class="icon-box"><i class="fa-solid fa-kitchen-set"></i></div>
+                <h3>Modular Kitchen</h3>
+                <p>Smart, space-saving designs with premium finishes and ergonomic layouts.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=600&q=80" alt="Furniture">
+            </div>
+            <div class="service-content">
+                <div class="icon-box"><i class="fa-solid fa-couch"></i></div>
+                <h3>Furniture</h3>
+                <p>Bespoke sofas, wardrobes, and units tailored to your unique style and comfort.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=600&q=80" alt="Civil">
+            </div>
+            <div class="service-content">
+                <div class="icon-box"><i class="fa-solid fa-trowel-bricks"></i></div>
+                <h3>Civil Work</h3>
+                <p>Structural modifications, premium tiling, and flooring executed with precision.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" alt="False Ceiling">
+            </div>
+            <div class="service-content">
+                <div class="icon-box"><i class="fa-solid fa-lightbulb"></i></div>
+                <h3>False Ceiling</h3>
+                <p>Modern lighting and designer POP ceilings to enhance your room's ambiance and style.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=600&q=80" alt="Painting">
+            </div>
+            <div class="service-content">
+                <div class="icon-box"><i class="fa-solid fa-paint-roller"></i></div>
+                <h3>Painting</h3>
+                <p>High-quality wall finishes and textures using premium, durable, and eco-friendly paints.</p>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img">
+                <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80" alt="Electric Work">
+            </div>
+            <div class="service-content">
+                <div class="icon-box"><i class="fa-solid fa-bolt"></i></div>
+                <h3>Electrical Work</h3>
+                <p>Safe wiring solutions and elegant electrical fixtures for your modern home automation.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section id="projects" class="services-section">
+    <div class="services-header">
+        <h2>Featured <span class="highlight">Projects</span></h2>
+        <p>Experience our designs through cinematic tours and detailed galleries.</p>
+    </div>
+
+    <h3 class="project-group-title">Cinematic Video Tours</h3>
+    <div class="service-container" style="margin-bottom: 60px;">
+        <div class="service-card">
+            <div class="service-img-full"><video autoplay muted loop playsinline><source th:src="@{/videos/video1.mp4}" type="video/mp4"></video></div>
+            
+        </div>
+        <div class="service-card">
+            <div class="service-img-full"><video autoplay muted loop playsinline><source th:src="@{/videos/video2.mp4}" type="video/mp4"></video></div>
+            
+        </div>
+        <div class="service-card">
+            <div class="service-img-full"><video autoplay muted loop playsinline><source th:src="@{/videos/video3.mp4}" type="video/mp4"></video></div>
+            
+        </div>
+    </div>
+
+    <h3 class="project-group-title">Project Gallery</h3>
+<div class="service-container">
+    <div class="service-card">
+        <div class="service-img"><img th:src="@{/images/work1.jpg}"></div>
+        <div class="service-content"><h3>Azure Kitchen</h3><p>High-gloss finish with smart storage.</p></div>
+    </div>
+
+    <div class="service-card">
+        <div class="service-img"><img th:src="@{/images/work2.jpg}"></div>
+        <div class="service-content"><h3>Modern Vitrine</h3><p>Custom glass displays with LED profiling.</p></div>
+    </div>
+
+    <div class="service-card">
+        <div class="service-img"><img th:src="@{/images/work3.jpg}"></div>
+        <div class="service-content"><h3>Bespoke Master Suite</h3><p>Expertly crafted bedroom interiors blending premium upholstery with functional wood-finish storage solutions.</p></div>
+    </div>
+
+    <div class="service-card">
+        <div class="service-img"><img th:src="@{/images/work4.jpg}"></div>
+        <div class="service-content"><h3>Wall Moulding</h3><p>Custom architectural moulding for depth and character.</p></div>
+    </div>
+
+    <div class="service-card">
+        <div class="service-img"><img th:src="@{/images/work5.jpg}"></div>
+        <div class="service-content"><h3>Luxury Bedroom</h3><p>Fluted mocha headboard with ambient cove lighting.</p></div>
+    </div>
+
+    <div class="service-card">
+        <div class="service-img"><img th:src="@{/images/work6.jpg}"></div>
+        <div class="service-content"><h3>Divine Mandir</h3><p>CNC-cut backlighting for a serene prayer experience.</p></div>
+    </div>
+</div>
+</section>
+
+<section id="founder" class="services-section">
+    <div class="services-header">
+        <h2>The Visionaries <span class="highlight">Behind HEAV' HOME</span></h2>
+        <p>A synergy of creative vision and operational excellence.</p>
+    </div>
+    
+    <div class="service-container" style="max-width: 1000px;">
+        <div class="service-card">
+            <div class="service-content">
+                <div class="icon-box"><i class="fa-solid fa-pen-nib"></i></div>
+                <h3>Farhan Shaikh</h3>
+                <p style="color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1px;">Founder & Lead Designer</p>
+                <p>
+                    With a deep-rooted passion for architectural aesthetics and spatial planning, Farhan leads the creative heart of HEAV' HOME. He specializes in transforming empty shells into luxurious, soulful residences by blending modern trends with timeless functionality, ensuring every corner tells the client's unique story.
+                </p>
+                <div class="founder-social">
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/heavhome_interior?igsh=b3RyZnljbG80MDJy" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-content">
+                <div class="icon-box"><i class="fa-solid fa-gears"></i></div>
+                <h3>Faizan Shaikh</h3>
+                <p style="color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1px;">Co-Founder & Operations Head</p>
+                <p>
+                    Faizan is the strategic force that ensures design concepts are flawlessly translated into reality. Managing end-to-end operations, site execution, and quality control, he bridges the gap between vision and construction, maintaining the high standards of craftsmanship that HEAV' HOME is known for.
+                </p>
+                <div class="founder-social">
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/heavhome_interior?igsh=b3RyZnljbG80MDJy" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="services-section">
+    <div class="services-header">
+        <h2>Get In <span class="highlight">Touch</span></h2>
+        <p>Ready to transform your space? Reach out to our experts today.</p>
+    </div>
+
+    <div class="service-container" style="max-width: 1200px; text-align: left;">
+        
+        <div class="contact-info-wrapper">
+            <div class="service-card" style="margin-bottom: 20px; cursor: default;">
+                <div class="service-content">
+                    <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                    <h3>Our Office</h3>
+                    <p>17/18, Opp. P-8 Building, <br>
+                       Behind Amrut Nagar, Ram Mandir Road, <br>
+                       Oshiwara, Jogeshwari (W), Mumbai - 400102.</p>
+                </div>
+            </div>
+
+            <div class="service-card" style="margin-bottom: 20px; cursor: default;">
+                <div class="service-content">
+                    <div class="icon-box"><i class="fa-solid fa-user-tie"></i></div>
+                    <h3>Farhan Shaikh (Founder)</h3>
+                    <p><i class="fa-solid fa-envelope" style="color: var(--primary); margin-right: 10px;"></i> farhanshaikh5478@gmail.com</p>
+                    <p><i class="fa-solid fa-phone" style="color: var(--primary); margin-right: 10px;"></i> +91 84476 90663</p>
+                </div>
+            </div>
+
+            <div class="service-card" style="margin-bottom: 20px; cursor: default;">
+                <div class="service-content">
+                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                    <h3>Faizan Shaikh (Co-Founder)</h3>
+                    <p><i class="fa-solid fa-envelope" style="color: var(--primary); margin-right: 10px;"></i> fs0528351@gmail.com</p>
+                    <p><i class="fa-solid fa-phone" style="color: var(--primary); margin-right: 10px;"></i> +91 86520 80722</p>
+                </div>
+            </div>
+
+            <div class="service-card" style="cursor: default; background: var(--primary);">
+                <div class="service-content" style="text-align: center;">
+                    <a href="https://www.instagram.com/heavhome_interior?igsh=b3RyZnljbG80MDJy" target="_blank" style="text-decoration: none; color: white; font-weight: bold; font-size: 18px;">
+                        <i class="fa-brands fa-instagram" style="margin-right: 10px;"></i> Follow us on Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+</section>
+
+<footer><p>© 2026 HEAV' HOME INTERIOR | All Rights Reserved</p></footer>
+
+</body>
+</html>
