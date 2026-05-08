@@ -7,6 +7,340 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
+    
+    /* ================= CONTACT SECTION ================= */
+	/* ================= CONTACT SECTION ================= */
+	
+	.contact-section{
+	    padding: 100px 8%;
+	    background: #0f172a;
+	    position: relative;
+	    overflow: hidden;
+	    color: white;
+	}
+	
+	.contact-section::before{
+	    content: "";
+	    position: absolute;
+	    width: 500px;
+	    height: 500px;
+	    background: rgba(245,158,11,0.08);
+	    border-radius: 50%;
+	    top: -150px;
+	    right: -150px;
+	    filter: blur(70px);
+	}
+	
+	/* ================= HEADER ================= */
+	
+	.contact-header{
+	    text-align: center;
+	    margin-bottom: 70px;
+	}
+	
+	.contact-header h2{
+	    font-size: 52px;
+	    font-weight: 700;
+	    margin-bottom: 15px;
+	    letter-spacing: 1px;
+	}
+	
+	.contact-header h2 span{
+	    color: #f59e0b;
+	}
+	
+	.contact-header p{
+	    color: #cbd5e1;
+	    font-size: 18px;
+	    max-width: 700px;
+	    margin: auto;
+	    line-height: 1.8;
+	}
+	
+	/* ================= GRID ================= */
+	
+	.contact-container{
+	    display: grid;
+	    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+	    gap: 30px;
+	    align-items: stretch;
+	}
+	
+	/* ================= CARD ================= */
+	
+	.contact-card{
+	    background: rgba(255,255,255,0.05);
+	    border: 1px solid rgba(255,255,255,0.08);
+	    backdrop-filter: blur(14px);
+	    border-radius: 28px;
+	    padding: 35px 30px;
+	    position: relative;
+	    overflow: hidden;
+	    transition: 0.45s ease;
+	    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+	}
+	
+	.contact-card::before{
+	    content: "";
+	    position: absolute;
+	    width: 140px;
+	    height: 140px;
+	    background: rgba(255,255,255,0.04);
+	    border-radius: 50%;
+	    top: -40px;
+	    right: -40px;
+	}
+	
+	.contact-card:hover{
+	    transform: translateY(-12px);
+	    border-color: #f59e0b;
+	    box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+	}
+	
+	/* ================= ICON ================= */
+	
+	.contact-icon{
+	    width: 85px;
+	    height: 85px;
+	    border-radius: 24px;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    margin-bottom: 25px;
+	    position: relative;
+	    overflow: hidden;
+	    box-shadow: 
+	        0 12px 30px rgba(245,158,11,0.35),
+	        inset 0 2px 10px rgba(255,255,255,0.25);
+	    transition: 0.4s ease;
+	}
+	
+	/* SHINY EFFECT */
+	
+	.contact-icon::before{
+	    content: "";
+	    position: absolute;
+	    width: 140%;
+	    height: 140%;
+	    background: rgba(255,255,255,0.15);
+	    transform: rotate(45deg);
+	    top: -120%;
+	    left: -120%;
+	    transition: 0.7s ease;
+	}
+	
+	.contact-card:hover .contact-icon::before{
+	    top: 100%;
+	    left: 100%;
+	}
+	
+	.contact-icon i{
+	    font-size: 34px;
+	    color: white;
+	    z-index: 2;
+	    position: relative;
+	    transition: 0.4s ease;
+	}
+	
+	.contact-card:hover .contact-icon{
+	    transform: rotate(-8deg) scale(1.08);
+	}
+	
+	.contact-card:hover .contact-icon i{
+	    transform: scale(1.18);
+	}
+	
+	/* DIFFERENT ICON COLORS */
+	
+	.contact-card:nth-child(1) .contact-icon{
+	    background: linear-gradient(135deg,#ff7b00,#ffb703);
+	}
+	
+	.contact-card:nth-child(2) .contact-icon{
+	    background: linear-gradient(135deg,#2563eb,#60a5fa);
+	}
+	
+	.contact-card:nth-child(3) .contact-icon{
+	    background: linear-gradient(135deg,#10b981,#34d399);
+	}
+	
+	/* ================= CONTENT ================= */
+	
+	.contact-content h3{
+	    font-size: 24px;
+	    margin-bottom: 10px;
+	    font-weight: 700;
+	}
+	
+	.contact-content span{
+	    display: inline-block;
+	    margin-bottom: 18px;
+	    color: #f59e0b;
+	    font-size: 15px;
+	    font-weight: 500;
+	}
+	
+	.contact-content p{
+	    color: #cbd5e1;
+	    line-height: 1.9;
+	    font-size: 15px;
+	}
+	
+	/* ================= LINKS ================= */
+	
+	.contact-content a{
+	    display: flex;
+	    align-items: center;
+	    gap: 12px;
+	    margin-top: 14px;
+	    text-decoration: none;
+	    color: #e2e8f0;
+	    font-size: 15px;
+	    transition: 0.35s ease;
+	}
+	
+	.contact-content a i{
+	    color: #f59e0b;
+	    font-size: 16px;
+	}
+	
+	.contact-content a:hover{
+	    color: #f59e0b;
+	    transform: translateX(6px);
+	}
+	
+	/* ================= INSTAGRAM CARD ================= */
+	
+	.instagram-card{
+	    background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
+	    border-radius: 30px;
+	    padding: 40px;
+	    display: flex;
+	    align-items: center;
+	    justify-content: center;
+	    min-height: 250px;
+	    text-align: center;
+	    overflow: hidden;
+	    position: relative;
+	    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+	    transition: 0.45s ease;
+	}
+	
+	.instagram-card::before{
+	    content: "";
+	    position: absolute;
+	    width: 200px;
+	    height: 200px;
+	    background: rgba(255,255,255,0.12);
+	    border-radius: 50%;
+	    top: -60px;
+	    right: -60px;
+	}
+	
+	.instagram-card:hover{
+	    transform: scale(1.03);
+	}
+	
+	.instagram-card a{
+	    color: white;
+	    text-decoration: none;
+	    font-size: 24px;
+	    font-weight: 700;
+	    line-height: 1.6;
+	    z-index: 2;
+	}
+	
+	.instagram-card i{
+	    display: block;
+	    font-size: 58px;
+	    margin-bottom: 18px;
+	}
+	
+	/* ================= RESPONSIVE ================= */
+	
+	@media(max-width: 992px){
+	
+	    .contact-header h2{
+	        font-size: 42px;
+	    }
+	
+	    .contact-section{
+	        padding: 80px 6%;
+	    }
+	}
+	
+	@media(max-width: 768px){
+	
+	    .contact-container{
+	        grid-template-columns: 1fr;
+	    }
+	
+	    .contact-header h2{
+	        font-size: 34px;
+	    }
+	
+	    .contact-header p{
+	        font-size: 15px;
+	    }
+	
+	    .contact-card{
+	        padding: 30px 24px;
+	    }
+	
+	    .instagram-card{
+	        min-height: 220px;
+	    }
+	
+	    .instagram-card a{
+	        font-size: 20px;
+	    }
+	}
+
+/* INSTAGRAM */
+
+.instagram-card{
+    background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
+    border-radius: 30px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    transition: 0.4s ease;
+}
+
+.instagram-card:hover{
+    transform: scale(1.03);
+}
+
+.instagram-card a{
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.6;
+}
+
+.instagram-card i{
+    display: block;
+    font-size: 55px;
+    margin-bottom: 18px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 768px){
+
+    .contact-header h2{
+        font-size: 38px;
+    }
+
+    .contact-section{
+        padding: 80px 5%;
+    }
+}
         /* ============================================================
            1. GLOBAL SETTINGS & VARIABLES
            ============================================================ */
@@ -361,51 +695,87 @@
     </div>
 </section>
 
-<section id="contact" class="services-section">
-    <div class="services-header">
-        <h2>Get In <span class="highlight">Touch</span></h2>
-        <p>Ready to transform your space? Reach out to our experts today.</p>
+<section id="contact" class="contact-section">
+
+    <div class="contact-header">
+        <h2>Let’s Build Your <span>Dream Space</span></h2>
+        <p>
+            Premium interior solutions crafted with creativity, elegance, and perfection.
+        </p>
     </div>
 
-    <div class="service-container" style="max-width: 1200px; text-align: left;">
-        
-        <div class="contact-info-wrapper">
-            <div class="service-card" style="margin-bottom: 20px; cursor: default;">
-                <div class="service-content">
-                    <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
-                    <h3>Our Office</h3>
-                    <p>17/18, Opp. P-8 Building, <br>
-                       Behind Amrut Nagar, Ram Mandir Road, <br>
-                       Oshiwara, Jogeshwari (W), Mumbai - 400102.</p>
-                </div>
+    <div class="contact-container">
+
+        <!-- OFFICE -->
+        <div class="contact-card">
+            <div class="contact-icon">
+                <i class="fa-solid fa-location-dot"></i>
             </div>
 
-            <div class="service-card" style="margin-bottom: 20px; cursor: default;">
-                <div class="service-content">
-                    <div class="icon-box"><i class="fa-solid fa-user-tie"></i></div>
-                    <h3>Farhan Shaikh (Founder)</h3>
-                    <p><i class="fa-solid fa-envelope" style="color: var(--primary); margin-right: 10px;"></i> farhanshaikh5478@gmail.com</p>
-                    <p><i class="fa-solid fa-phone" style="color: var(--primary); margin-right: 10px;"></i> +91 84476 90663</p>
-                </div>
-            </div>
-
-            <div class="service-card" style="margin-bottom: 20px; cursor: default;">
-                <div class="service-content">
-                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
-                    <h3>Faizan Shaikh (Co-Founder)</h3>
-                    <p><i class="fa-solid fa-envelope" style="color: var(--primary); margin-right: 10px;"></i> fs0528351@gmail.com</p>
-                    <p><i class="fa-solid fa-phone" style="color: var(--primary); margin-right: 10px;"></i> +91 86520 80722</p>
-                </div>
-            </div>
-
-            <div class="service-card" style="cursor: default; background: var(--primary);">
-                <div class="service-content" style="text-align: center;">
-                    <a href="https://www.instagram.com/heavhome_interior?igsh=b3RyZnljbG80MDJy" target="_blank" style="text-decoration: none; color: white; font-weight: bold; font-size: 18px;">
-                        <i class="fa-brands fa-instagram" style="margin-right: 10px;"></i> Follow us on Instagram
-                    </a>
-                </div>
+            <div class="contact-content">
+                <h3>Visit Our Office</h3>
+                <p>
+                    17/18, Opp. P-8 Building,<br>
+                    Behind Amrut Nagar, Ram Mandir Road,<br>
+                    Oshiwara, Jogeshwari (W), Mumbai - 400102
+                </p>
             </div>
         </div>
+
+        <!-- FOUNDER -->
+        <div class="contact-card">
+            <div class="contact-icon">
+                <i class="fa-solid fa-user-tie"></i>
+            </div>
+
+            <div class="contact-content">
+                <h3>Farhan Shaikh</h3>
+                <span>Founder & Interior Expert</span>
+
+                <a href="mailto:farhanshaikh5478@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
+                    farhanshaikh5478@gmail.com
+                </a>
+
+                <a href="tel:+918447690663">
+                    <i class="fa-solid fa-phone"></i>
+                    +91 84476 90663
+                </a>
+            </div>
+        </div>
+
+        <!-- CO-FOUNDER -->
+        <div class="contact-card">
+            <div class="contact-icon">
+                <i class="fa-solid fa-briefcase"></i>
+            </div>
+
+            <div class="contact-content">
+                <h3>Faizan Shaikh</h3>
+                <span>Co-Founder & Project Consultant</span>
+
+                <a href="mailto:fs0528351@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
+                    fs0528351@gmail.com
+                </a>
+
+                <a href="tel:+918652080722">
+                    <i class="fa-solid fa-phone"></i>
+                    +91 86520 80722
+                </a>
+            </div>
+        </div>
+
+        <!-- INSTAGRAM -->
+        <div class="instagram-card">
+            <a href="https://www.instagram.com/heavhome_interior?igsh=b3RyZnljbG80MDJy" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+                Explore Our Interior Designs
+            </a>
+        </div>
+
+    </div>
+
 </section>
 
 <footer><p>© 2026 HEAV' HOME INTERIOR | All Rights Reserved</p></footer>
